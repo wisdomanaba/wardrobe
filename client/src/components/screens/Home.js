@@ -1,6 +1,8 @@
 import React,{useState,useEffect,useContext} from 'react'
 import {UserContext} from '../../App'
 import {Link} from 'react-router-dom'
+import 'survey-react/survey.css'
+import * as Survey from 'survey-react'
 const Home  = ()=>{
     const [data,setData] = useState([])
     const {state,dispatch} = useContext(UserContext)

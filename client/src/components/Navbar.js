@@ -58,9 +58,9 @@ const NavBar = ()=>{
         })
      }
     return(
-        <nav>
+        <nav style={{ backgroundColor: "#fff", padding: "0px 20px" }}>
         <div className="nav-wrapper white">
-          <Link to={state?"/":"/signin"} className="brand-logo left">Instagram</Link>
+          <Link to={state?"/":"/welcome"} className="brand-logo left">Wardrobe</Link>
           <ul id="nav-mobile" className="right">
              {renderList()}
   

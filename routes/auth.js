@@ -10,7 +10,6 @@ const requireLogin = require('../middleware/requireLogin')
 const nodemailer = require('nodemailer')
 const sendgridTransport = require('nodemailer-sendgrid-transport')
 const {SENDGRID_API,EMAIL} = require('../config/keys')
-//
 
 
 const transporter = nodemailer.createTransport(sendgridTransport({
@@ -59,6 +58,46 @@ router.post('/signup',(req,res)=>{
   })
 })
 
+router.post('/stylist/signup',(req,res)=>{
+    const {username,email,password,pic,role} = req.body 
+    if(!email || !password || !username || !role){
+       return res.status(422).json({error:"please add all the fields"})
+    }
+    User.findOne({email:email})
+    .then((savedStylist)=>{
+        if(savedStylist){
+          return res.status(422).json({error:"user already exists with that email"})
+        }
+        bcrypt.hash(password,12)
+        .then(hashedpassword=>{
+            const stylist = new User({
+                email,
+                password:hashedpassword,
+                username,
+                role,
+                pic
+            })
+      
+            stylist.save()
+              .then(stylist=>{
+                  // transporter.sendMail({
+                  //     to:user.email,
+                  //     from:"no-reply@insta.com",
+                  //     subject:"signup success",
+                  //     html:"<h1>welcome to instagram</h1>"
+                  // })
+                  res.json({message:"saved successfully"})
+              })
+              .catch(err=>{
+                  console.log(err)
+              })
+        })
+    
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+})
 
 router.post('/signin',(req,res)=>{
     const {email,password} = req.body
@@ -105,11 +144,11 @@ router.post('/reset-password',(req,res)=>{
              user.save().then((result)=>{
                  transporter.sendMail({
                      to:user.email,
-                     from:"no-replay@insta.com",
+                     from:"anabamaureen8@gmail.com",
                      subject:"password reset",
                      html:`
                      <p>You requested for password reset</p>
-                     <h5>click in this <a href="${EMAIL}/reset/${token}">link</a> to reset password</h5>
+                     <h5>click in this <a href="http://localhost:3000/reset/${token}">link</a> to reset password</h5>
                      `
                  })
                  res.json({message:"check your email"})

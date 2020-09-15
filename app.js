@@ -19,12 +19,13 @@ mongoose.connection.on('error',(err)=>{
 
 require('./models/user')
 require('./models/post')
+require('./models/stylistpost')
 
 app.use(express.json())
 app.use(require('./routes/auth'))
 app.use(require('./routes/post'))
 app.use(require('./routes/user'))
-
+app.use(require('./routes/stylist'))
 
 if(process.env.NODE_ENV=="production"){
     app.use(express.static('client/build'))
@@ -37,4 +38,3 @@ if(process.env.NODE_ENV=="production"){
 app.listen(PORT,()=>{
     console.log("server is running on",PORT)
 })
-

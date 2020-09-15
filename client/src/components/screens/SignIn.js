@@ -7,11 +7,13 @@ const SignIn  = ()=>{
     const history = useHistory()
     const [password,setPasword] = useState("")
     const [email,setEmail] = useState("")
+    const [loading, setLoading] = useState(false)
     const PostData = ()=>{
         if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
             M.toast({html: "invalid email",classes:"#c62828 red darken-3"})
             return
         }
+        setLoading(true)
         fetch("/signin",{
             method:"post",
             headers:{
@@ -26,6 +28,7 @@ const SignIn  = ()=>{
             console.log(data)
            if(data.error){
               M.toast({html: data.error,classes:"#c62828 red darken-3"})
+              setLoading(false)
            }
            else{
                localStorage.setItem("jwt",data.token)
@@ -35,13 +38,15 @@ const SignIn  = ()=>{
                history.push('/')
            }
         }).catch(err=>{
+            setLoading(false)
             console.log(err)
         })
     }
+
    return (
       <div className="mycard">
           <div className="card auth-card input-field">
-            <h2>Instagram</h2>
+            <h2>Wardrobe</h2>
             <input
             type="text"
             placeholder="email"
@@ -57,14 +62,13 @@ const SignIn  = ()=>{
             <button className="btn waves-effect waves-light #64b5f6 blue darken-1"
             onClick={()=>PostData()}
             >
-                Login
+                {loading ? <i class="fa fa-spinner fa-spin"></i> : "Login"}
             </button>
-            <h5>
-                <Link to="/signup">Dont have an account ?</Link>
-            </h5>
             <h6>
-                <Link to="/reset">Forgot password ?</Link>
+                <Link to="/reset">Forgot password?</Link>
             </h6>
+            <h6>Dont have an account? <Link to="/signup"><span>Sign Up</span></Link></h6>
+            
     
         </div>
       </div>
