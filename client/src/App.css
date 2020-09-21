@@ -3,7 +3,8 @@
 body {
     font-size: 14px;
     letter-spacing: 0;
-    line-height: 18px
+    line-height: 18px;
+    background-color: rgba(var(--b3f,250,250,250),1);
 }
 
 .container {
@@ -53,7 +54,8 @@ a{
 }
 
 .item{
-  width: 30%;
+  width: 200px;
+  height: 200px;
 }
 
 .home-card{
@@ -95,4 +97,107 @@ a{
 .auth-card  h6 span {
   color: #1E88E5 !important;
   font-weight: 600;
+}
+
+.pic-field {
+  display: flex;
+  flex-direction: row;
+}
+
+.card .card-image img {
+  height: 450px;
+}
+
+.post-user-pic {
+  width: 45px;
+  height: 45px;
+  margin-left: 20px;
+  border-radius: 50px;
+  border: 2px solid #1e88e5;
+}
+
+.home-card {
+  padding-bottom: 2em;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.home-card form {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.home-card form .comment {
+  border-bottom: none !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+.post-comment {
+  padding-left: 20px;
+  color: rgb(166, 199, 241);
+  background: none;
+  font-weight: 700;
+  padding-right: 20px;
+  border: none;
+}
+
+.home-card h5 {
+  display: flex;
+  width: 100%;
+}
+
+.home-card button {
+  width: 100%;
+  background-color: #C62828 !important;
+  color: #fff;
+  padding: 15px 0;
+  border: none;
+}
+
+.home-card button:hover {
+  background-color: #a01e1e !important;
+  cursor: pointer;
+  transition: all ease-in-out 0.5s;
+}
+
+.home-card h5 a {
+  flex-grow: 3 !important;
+  font-size: 17px;
+}
+
+.home-card h5 i {
+  padding-right: 0.5em;
+}
+
+.home-card form {
+  border: 1px solid #e6e0e0;
+}
+
+.home-card form input[type=text]:focus {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.post-comment {
+  padding-left: 20px;
+  color: rgb(166, 199, 241);
+  font-weight: 700;
+  padding-right: 20px;
+}
+
+.home-card form input[type=text]:focus ~ .post-comment {
+  color: rgb(21, 105, 214);
+}
+
+.card .card-content {
+  margin-bottom: 1.5em;
 }

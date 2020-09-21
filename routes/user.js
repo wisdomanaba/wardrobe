@@ -10,7 +10,7 @@ router.get('/user/:id',requireLogin,(req,res)=>{
     .select("-password")
     .then(user=>{
          Post.find({postedBy:req.params.id})
-         .populate("postedBy","_id name")
+         .populate("postedBy","_id username pic")
          .exec((err,posts)=>{
              if(err){
                  return res.status(422).json({error:err})
@@ -81,8 +81,8 @@ router.put('/updatepic',requireLogin,(req,res)=>{
 
 router.post('/search-users',(req,res)=>{
     let userPattern = new RegExp("^"+req.body.query)
-    User.find({email:{$regex:userPattern}})
-    .select("_id email")
+    User.find({username:{$regex:userPattern}})
+    .select("_id username")
     .then(user=>{
         res.json({user})
     }).catch(err=>{

@@ -3,16 +3,22 @@ import NavBar from './components/Navbar'
 import "./App.css"
 import {BrowserRouter,Route,Switch,useHistory} from 'react-router-dom'
 import Home from './components/screens/Home'
+import Footer from './components/screens/Footer'
+import NotFound from './components/screens/NotFound'
 import Welcome from './components/screens/Welcome'
 import Signin from './components/screens/SignIn'
 import Profile from './components/screens/Profile'
+import Stylist from './components/screens/Stylist'
+import Settings from './components/screens/Settings'
 import Signup from './components/screens/Signup'
+import StylistSignUp from './components/screens/StylistSignUp'
 import CreatePost from './components/screens/CreatePost'
 import {reducer,initialState} from './reducers/userReducer'
 import UserProfile from './components/screens/UserProfile'
 import SubscribedUserPosts from './components/screens/SubscribesUserPosts'
 import Reset from './components/screens/Reset'
 import NewPassword from './components/screens/Newpassword'
+
 export const UserContext = createContext()
 
 
@@ -42,8 +48,17 @@ const Routing = ()=>{
       <Route path="/signup">
         <Signup />
       </Route>
+      <Route path="/stylist">
+        <StylistSignUp />
+      </Route>
+      <Route path="/stylistpost">
+        <Stylist />
+      </Route>
       <Route exact path="/profile">
         <Profile />
+      </Route>
+      <Route path="/profile/settings">
+        <Settings/>
       </Route>
       <Route path="/create">
         <CreatePost/>
@@ -60,7 +75,9 @@ const Routing = ()=>{
       <Route path="/reset/:token">
         <NewPassword />
       </Route>
-      
+      <Route>
+        <NotFound />
+      </Route>
     </Switch>
   )
 }
@@ -69,11 +86,11 @@ function App() {
   const [state,dispatch] = useReducer(reducer,initialState)
   return (
     <UserContext.Provider value={{state,dispatch}}>
-    <BrowserRouter>
-      <NavBar />
-      <Routing />
-      
-    </BrowserRouter>
+      <BrowserRouter>
+        <NavBar />
+        <Routing />
+        <Footer />
+      </BrowserRouter>
     </UserContext.Provider>
   );
 }

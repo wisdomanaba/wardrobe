@@ -1,5 +1,6 @@
 import React,{useState,useContext,} from 'react'
 import {Link,useHistory} from 'react-router-dom'
+import {SignInContainer} from './element'
 import {UserContext} from '../../App'
 import M from 'materialize-css'
 const SignIn  = ()=>{
@@ -44,34 +45,34 @@ const SignIn  = ()=>{
     }
 
    return (
-      <div className="mycard">
-          <div className="card auth-card input-field">
-            <h2>Wardrobe</h2>
-            <input
-            type="text"
-            placeholder="email"
-            value={email}
-            onChange={(e)=>setEmail(e.target.value)}
-            />
-            <input
-            type="password"
-            placeholder="password"
-            value={password}
-            onChange={(e)=>setPasword(e.target.value)}
-            />
-            <button className="btn waves-effect waves-light #64b5f6 blue darken-1"
-            onClick={()=>PostData()}
-            >
-                {loading ? <i class="fa fa-spinner fa-spin"></i> : "Login"}
-            </button>
-            <h6>
-                <Link to="/reset">Forgot password?</Link>
-            </h6>
-            <h6>Dont have an account? <Link to="/signup"><span>Sign Up</span></Link></h6>
-            
-    
-        </div>
-      </div>
+       <SignInContainer>
+            <div className="mycard">
+                    <div className="card auth-card input-field">
+                        <h2>Wardrobe</h2>
+                        <input
+                        type="text"
+                        placeholder="email"
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}
+                        />
+                        <input
+                        type="password"
+                        placeholder="password"
+                        value={password}
+                        onChange={(e)=>setPasword(e.target.value)}
+                        />
+                        <button className="btn waves-effect waves-light #64b5f6 blue darken-1"
+                        onClick={()=>PostData()}
+                        >
+                            {loading ? <i class="fa fa-spinner fa-spin"></i> : "Login"}
+                        </button>
+                        <h6>
+                            <Link to="/reset">Forgot password?</Link>
+                        </h6>
+                        <h6>Dont have an account? <Link to="/signup"><span>Sign Up</span></Link></h6>
+                    </div>
+            </div>
+      </SignInContainer>
    )
 }
 

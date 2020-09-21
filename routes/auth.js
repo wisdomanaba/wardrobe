@@ -19,8 +19,8 @@ const transporter = nodemailer.createTransport(sendgridTransport({
 }))
 
 router.post('/signup',(req,res)=>{
-  const {name,email,password,pic} = req.body 
-  if(!email || !password || !name){
+  const {username,email,password,pic,role} = req.body
+  if(!email || !password || !username || !role){
      return res.status(422).json({error:"please add all the fields"})
   }
   User.findOne({email:email})
@@ -33,8 +33,9 @@ router.post('/signup',(req,res)=>{
             const user = new User({
                 email,
                 password:hashedpassword,
-                name,
-                pic
+                username,
+                pic,
+                role
             })
     
             user.save()
@@ -113,9 +114,9 @@ router.post('/signin',(req,res)=>{
         .then(doMatch=>{
             if(doMatch){
                 // res.json({message:"successfully signed in"})
-               const token = jwt.sign({_id:savedUser._id},JWT_SECRET)
-               const {_id,name,email,followers,following,pic} = savedUser
-               res.json({token,user:{_id,name,email,followers,following,pic}})
+               const token = jwt.sign({_id:savedUser._id,role:savedUser.role},JWT_SECRET)
+               const {_id,username,name,email,followers,following,pic,role} = savedUser
+               res.json({token,user:{_id,username,name,email,followers,following,pic,role}})
             }
             else{
                 return res.status(422).json({error:"Invalid Email or password"})

@@ -6,18 +6,19 @@ const NavBar = ()=>{
     const  searchModal = useRef(null)
     const [search,setSearch] = useState('')
     const [userDetails,setUserDetails] = useState([])
-     const {state,dispatch} = useContext(UserContext)
-     const history = useHistory()
+    const {state,dispatch} = useContext(UserContext)
+    const history = useHistory()
      useEffect(()=>{
          M.Modal.init(searchModal.current)
      },[])
      const renderList = ()=>{
        if(state){
            return [
-            <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>,
+            <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"#1E88E5"}}>search</i></li>,
             <li key="2"><Link to="/profile">Profile</Link></li>,
             <li key="3"><Link to="/create">Create Post</Link></li>,
             <li key="4"><Link to="/myfollowingpost">My following Posts</Link></li>,
+            <li key="3"><Link to="/stylistpost">Stylist Post</Link></li>,
             <li  key="5">
              <button className="btn #c62828 red darken-3"
             onClick={()=>{
@@ -34,9 +35,9 @@ const NavBar = ()=>{
            ]
        }else{
          return [
-          <li  key="6"><Link to="/signin">Signin</Link></li>,
-          <li  key="7"><Link to="/signup">Signup</Link></li>
-         
+          <li  key="6" style={{ backgroundColor: "#6aafeb" }}><Link to="/stylist">Become a Stylist</Link></li>,
+          <li  key="7"><Link to="/signup">Register</Link></li>,
+          <li  key="8"><Link to="/signin">Login</Link></li>
          ]
        }
      }
@@ -58,7 +59,7 @@ const NavBar = ()=>{
         })
      }
     return(
-        <nav style={{ backgroundColor: "#fff", padding: "0px 20px" }}>
+        <nav style={{ backgroundColor: "#fff", padding: "0px 50px" }}>
         <div className="nav-wrapper white">
           <Link to={state?"/":"/welcome"} className="brand-logo left">Wardrobe</Link>
           <ul id="nav-mobile" className="right">
@@ -75,13 +76,15 @@ const NavBar = ()=>{
             onChange={(e)=>fetchUsers(e.target.value)}
             />
              <ul className="collection">
-               {userDetails.map(item=>{
+              {
+                userDetails.map(item=>{
                  return <Link to={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={()=>{
                    M.Modal.getInstance(searchModal.current).close()
                    setSearch('')
-                 }}><li className="collection-item">{item.email}</li></Link> 
-               })}
-               
+                 }}><li className="collection-item">{item.username}</li></Link> 
+                })
+              }
+              {console.log(userDetails)}
               </ul>
           </div>
           <div className="modal-footer">

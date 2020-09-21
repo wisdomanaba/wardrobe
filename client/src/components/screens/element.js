@@ -112,7 +112,10 @@ export const WelcomeContainer = styled.div`
 `;
 
 export const SignUpContainer = styled.div`
-    margin-top: 3.5em;
+    .mycard {
+        margin-top: 3em;
+        margin-bottom: 3em;
+    }
     fieldset {
         border: none;
     }
@@ -132,5 +135,135 @@ export const SignUpContainer = styled.div`
     }
     .sv-imagepicker {
         dispaly: flex !important;
+    }
+`;
+
+export const SignInContainer = styled.div`
+    .mycard {
+        margin-top: 3em;
+        margin-bottom: 3em;
+    }
+`;
+
+export const FooterContainer = styled.div`
+    background-color: #fff;
+    hr {
+        display: block;
+        border-width: 0;
+        border-top: 1px solid #e8e8e8;
+    }
+    .main-footer {
+        display: flex;
+        align-content: center;
+        margin-top: 1.5em;
+        padding-top: 1em;
+        padding-bottom: 2em;
+    }
+    .brand-logo {
+        font-size: 2.1rem;
+    }
+    .footer-social {
+        display: flex;
+        flex-grow: 3;
+        align-items: center
+    }
+    .footer-icons {
+        display: flex;
+    }
+    span {
+        font-size: 14px;
+        text-transform: uppercase;
+        margin: 0px 0.5em 0px 0px;
+    }
+    img {
+        width: 33px;
+        height: 33px;
+        margin: 0px 0.3em 0px 0px;
+    }
+`;
+
+export const CreatePostContainer = styled.div`
+    .file-field {
+        display: flex;
+    }
+    select {
+        margin-top: 1em;
+    }
+`;
+
+export const SettingsContainer = styled.div`
+    .settings {
+        background: #fff;
+        display: flex;
+        max-width: 900px;
+        margin: 4em auto 4em auto;
+    }
+    .settings-nav {
+        border-right: 1px solid #dbdbdb;
+    }
+    .settings-nav div {
+        line-height: 20px;
+        padding: 16px 25px 16px 30px;
+        font-size: 16px;
+        cursor: pointer;
+        border-left: 2px solid transparent;
+    }
+    .settings-nav div:hover {
+        transition: all ease-in-out 0.4s;
+        background-color: rgba(var(--b3f,250,250,250),1);
+        border-left: 2px solid #C62828;
+    }
+    .settings-nav .active {
+        border-left: 2px solid #C62828;
+    }
+    .settings-form {
+        padding-top: 2em;
+        padding-bottom: 2em;
+        padding-left: 5em;
+        padding-right: 2em;
+        width: 40%;
+    }
+    .settings-form  .profile-pic {
+        display: flex;
+        align-content: center;
+    }
+    .settings-form img {
+        width: 50px;
+        border-radius: 50px;
+        margin-top: 1.3em;
+        margin-right: 2em;
+    }
+    .settings-form label {
+        cursor: pointer;
+    }
+    .settings-form input[type=file] {
+        display: none;
+    }
+    .settings-form form {
+        margin-top: 3em;
+    }
+    .settings-form form div {
+        margin-bottom: 1em;
+    }
+    .settings-form form input {
+        width: 100%;
+    }
+`;
+
+export const BreadCumbContainer = styled.div`
+    background: #d0cdcd;
+    padding: 2em 0;
+    
+    i {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .container div {
+        display: flex;
+        align-items: center;
+    }
+    a {
+        color: #1E88E5 !important;
+        font-weight: 600;
     }
 `;

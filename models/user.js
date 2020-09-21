@@ -3,7 +3,11 @@ const {ObjectId} = mongoose.Schema.Types
 const userSchema = new mongoose.Schema({
     username:{
         type:String,
-        required:true
+        lowercase:true,
+        unique:true,
+        required:true,
+        minlength:3,
+        maxlength: 10
     },
     email:{
         type:String,
